@@ -1,0 +1,52 @@
+import unittest
+from BankAccount import BankAccount
+
+
+class TestBankAccount(unittest.TestCase):
+    def setUp(self):
+        self.account = BankAccount("Eugene", 123456, 100.00)
+
+    def test_initial_balance(self):
+        self.assertEqual(self.account.Account_balence, 100.00)
+
+    def test_deposit_positive_amount(self):
+        result = self.account.deposit(50)
+        self.assertTrue(result)
+        self.assertEqual(self.account.Account_balence, 150)
+
+    def test_deposit_zero_amount(self):
+        result = self.account.deposit(0.00)
+        self.assertFalse(result)
+        self.assertEqual(self.account.Account_balence, 100.00)
+
+    def test_deposit_negative_amount(self):
+        result = self.account.deposit(-20.00)
+        self.assertFalse(result)
+        self.assertEqual(self.account.Account_balence, 100.00)
+
+    def test_withdraw_valid_amount(self):
+        result = self.account.withdraw(40.5)
+        self.assertTrue(result)
+        self.assertEqual(self.account.Account_balence, 59.50)
+
+    def test_withdraw_insufficient_balance(self):
+        result = self.account.withdraw(200.00)
+        self.assertFalse(result)
+        self.assertEqual(self.account.Account_balence, 100.00)
+
+    def test_withdraw_zero_amount(self):
+        result = self.account.withdraw(0.00)
+        self.assertFalse(result)
+        self.assertEqual(self.account.Account_balence, 100.00)
+
+    def test_withdraw_negative_amount(self):
+        result = self.account.withdraw(-30.00)
+        self.assertFalse(result)
+        self.assertEqual(self.account.Account_balence, 100.00)
+
+    def test_show_balance(self):
+        self.assertTrue(self.account.show_balence())
+
+
+if __name__ == "__main__":
+    unittest.main()
