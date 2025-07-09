@@ -5,6 +5,8 @@ from BankAccount import BankAccount
 class TestBankAccount(unittest.TestCase):
     def setUp(self):
         self.account = BankAccount("Eugene", 123456, 100.00)
+    
+    
 
     def test_initial_balance(self):
         self.assertEqual(self.account.Account_balence, 100.00)
@@ -47,6 +49,7 @@ class TestBankAccount(unittest.TestCase):
     def test_show_balance(self):
         self.assertTrue(self.account.show_balence())
 
+    
 
 if __name__ == "__main__":
     unittest.main()

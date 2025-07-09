@@ -2,11 +2,15 @@ class BankAccount:
     def __init__(
         self, Account_name: str, Account_number: int, ini_balence: float = 0.00
     ):
+        if ini_balence < 0:
+            print("Initial balance cannot be negative.")
+            return False
         self.Account_name = Account_name
         self.Account_number = Account_number
         self.Account_balence = ini_balence
 
     def withdraw(self, amount: float = 0.00):
+        amount = round(amount, 2)
         if amount > 0:
             if amount < self.Account_balence:
                 self.Account_balence -= amount
@@ -20,6 +24,7 @@ class BankAccount:
             return False
 
     def deposit(self, amount: float = 0.00):
+        amount = round(amount, 2)
         if amount > 0:
             self.Account_balence += amount
             print("Deposit money successfully")
